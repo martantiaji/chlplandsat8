@@ -39,7 +39,7 @@ with st.sidebar:
         Aplikasi web ini dikelola ole Martanti Aji dengan dosen pembimbing Dr. Lalu Muhamad Jaelani S.T., M.Sc., PhD. 
         Url aplikasi web ini yaitu <https://streamlit.geemap.org>
         
-        Anda dapat mengakses referensi kode : [GitHub Aji]<https://github.com/martantiaji/chlplandsat8.git>
+        Anda dapat mengakses referensi kode : [GitHub Aji](https://github.com/martantiaji/chlplandsat8.git)
 
     """
     )
