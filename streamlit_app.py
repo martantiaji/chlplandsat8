@@ -1,6 +1,11 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from apps import home, geemap_script  # import your app modules here
+from multiapp import MultiApp
+from apps import (
+    home,
+    geemap_script,
+)#import your app modules here
+
 
 st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 
