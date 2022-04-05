@@ -83,8 +83,9 @@ def clhT2():
     print(clh_collection, 'Clorophil-a')
     
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-    #tahun= range (2016, 2021)
-    for i in range(i=2016, i<=2020, i++):
+    #range(i=2016, i<=2020, i++)
+    tahun= range (2016, 2021)
+    for i in tahun:
         def clh (clh_collection):
             chl = clh_collection.filter(ee.Filter.eq('year', i)).first().clip(studyarea)
             Map.addLayer(clh,parameter,"Clorophyl-a"+i)
