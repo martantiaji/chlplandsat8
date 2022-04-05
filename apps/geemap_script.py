@@ -80,4 +80,4 @@ def clhT2():
             chl = clh_collection.filter(ee.Filter.eq('year', i)).first().clip(studyarea)
             Map.addLayer(clh,parameter,"Clorophyl-a"+i)
             
-    Map
+    Map.to_streamlit()
