@@ -1,13 +1,6 @@
 import ee
 import geemap
 import streamlit as st
-import os
-import numpy as np
-import geopandas as gpd
-import matplotlib.pyplot as plt
-import earthpy as et
-import earthpy.spatial as es
-import earthpy.plot as ep
 
 
 def app():
