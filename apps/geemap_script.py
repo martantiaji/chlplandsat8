@@ -78,5 +78,5 @@ def clhT2():
     for i in tahun:
         def clh (clh_collection):
             chl = clh_collection.filter(ee.Filter.eq('year', i)).first().clip(studyarea)
-            Map.addLayer(clh,parameter,"Clorophyl-a"+i)
-Map
+        Map.addLayer(clh,parameter,"Clorophyl-a"+i)
+    Map
