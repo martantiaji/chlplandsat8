@@ -11,7 +11,7 @@ st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 
 apps = [
     {"func": home.app, "title": "Home", "icon": "house"},
-    {"func": geemap_script.app, "title": "Heatmap", "icon": "map"},
+    {"func": geemap_script.app, "title": "Chlorophill-a", "icon": "map"},
 ]
 
 titles = [app["title"] for app in apps]
