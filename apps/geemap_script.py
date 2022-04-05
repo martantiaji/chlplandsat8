@@ -1,13 +1,10 @@
 import ee
 import geemap
 import streamlit as st
-from streamlit_folium import folium_static
 import os
-from glob import glob
 import numpy as np
 import geopandas as gpd
 import matplotlib.pyplot as plt
-from matplotlib.colors import ListedColormap
 import earthpy as et
 import earthpy.spatial as es
 import earthpy.plot as ep
