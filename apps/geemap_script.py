@@ -17,7 +17,7 @@ def app():
     """)
     
     
-def clhT1():
+with clhT1:
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
     
@@ -40,18 +40,18 @@ def clhT1():
     for col in yearlist:
         col= ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")\
             .filterBounds(studyarea).filter(ee.Filter.eq('year', yearlist)).first()
+    #cloud masking area
+    def maskL8sr(col):
+        # Bits 3 and 5 are cloud shadow and cloud, respectively.
+        cloudShadowBitMask = (1 << 3)
+        cloudsBitMask = (1 << 5)
+        # Get the pixel QA band.
+        qa = col.select('pixel_qa')
+        # Both flags should be set to zero, indicating clear conditions.
+        mask = qa.bitwiseAnd(cloudShadowBitMask).eq(0)\
+        .And(qa.bitwiseAnd(cloudsBitMask).eq(0))
         
-        #cloud masking area
-        def maskL8sr(col):
-            # Bits 3 and 5 are cloud shadow and cloud, respectively.
-            cloudShadowBitMask = (1 << 3)
-            cloudsBitMask = (1 << 5)
-            # Get the pixel QA band.
-            qa = col.select('pixel_qa')
-            # Both flags should be set to zero, indicating clear conditions.
-            mask = qa.bitwiseAnd(cloudShadowBitMask).eq(0)\
-                .And(qa.bitwiseAnd(cloudsBitMask).eq(0))
-            return col.divide(10000).divide(3.141593).updateMask(mask)
+        return col.divide(10000).divide(3.141593).updateMask(mask)
         
     #Make a calculate for Clorophil-a
     def chla (ynz) :
@@ -62,9 +62,12 @@ def clhT1():
             {'RrsB4': image.select('B4'),
              'RrsB5': image.select('B5')}).updateMask(ndwi)
         return clh_a.set('year', ynz).set('month', 1).set('date', ee.Date.fromYMD(ynz,1,1)).set('system:time_start',ee.Date.fromYMD(ynz,1,1)).map()
+    
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+    
     clhcollection = ee.ImageCollection.fromImages([chla]).flatten()
+    return clhcollection
     
     Map.addLayer(clhcollection, parameter, 'Clorophyll-a')
     Map.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
-    Map
+    Map.to_streamlit(width=width, height=height)
