@@ -66,7 +66,7 @@ with clhT1:
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
     
     clhcollection = ee.ImageCollection.fromImages([chla]).flatten()
-    return clhcollection
+    #return clhcollection
     
     Map.addLayer(clhcollection, parameter, 'Clorophyll-a')
     Map.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
