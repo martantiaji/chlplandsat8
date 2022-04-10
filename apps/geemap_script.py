@@ -17,7 +17,7 @@ def app():
     """)
     
     
-with clhT1:
+def clhT1():
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
     
@@ -66,7 +66,6 @@ with clhT1:
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
     
     clhcollection = ee.ImageCollection.fromImages([chla]).flatten()
-    #return clhcollection
     
     Map.addLayer(clhcollection, parameter, 'Clorophyll-a')
     Map.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
