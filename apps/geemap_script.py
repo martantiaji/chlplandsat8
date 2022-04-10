@@ -17,7 +17,7 @@ def app():
     """)
     
     
-def clhT2():
+def clhT1():
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
     
