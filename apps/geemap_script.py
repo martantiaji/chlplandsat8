@@ -21,52 +21,61 @@ def clhT1():
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
     
-    Map = geemap.Map()
+    m = geemap.Map()
     
-    polygon = ee.Geometry.Polygon([
+    start_year = 2013
+    end_year = 2020
+    study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
     
-    studyarea= polygon
+    collection = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR") \
+        .filterBounds(study_area)
     
-    #Make a time
-    startYear = 2013
-    endYear = 2020
-    startdate=ee.Date.fromYMD(startYear,1,1)
-    enddate=ee.Date.fromYMD(endYear+1,12,31)
-    yearlist = range(startYear, endYear)
-    print(yearlist)
-    #Read the Data
-    for col in yearlist:
-        col= ee.ImageCollection("LANDSAT/LC08/C01/T2_SR")\
-            .filterBounds(studyarea).filter(ee.Filter.eq('year', yearlist)).first()
-    #cloud masking area
-    def maskL8sr(col):
+    yearlist = range(start_year, end_year)
+    
+    def mask_clouds(image):
         # Bits 3 and 5 are cloud shadow and cloud, respectively.
-        cloudShadowBitMask = (1 << 3)
-        cloudsBitMask = (1 << 5)
+        cloud_shadow_bit_mask = (1 << 3)
+        clouds_bit_mask = (1 << 5)
         # Get the pixel QA band.
-        qa = col.select('pixel_qa')
+        qa = image.select('pixel_qa')
         # Both flags should be set to zero, indicating clear conditions.
-        mask = qa.bitwiseAnd(cloudShadowBitMask).eq(0)\
-        .And(qa.bitwiseAnd(cloudsBitMask).eq(0))
-        
-        return col.divide(10000).divide(3.141593).updateMask(mask)
-        
-    #Make a calculate for Clorophil-a
-    def chla (ynz) :
-        image = col.filter(ee.Filter.calendarRange(ynz, ynz, 'year')).map(maskL8sr).mean()
-        ndwi = image.normalizedDifference(['B3', 'B5']).rename('NDWI')
-        clh_a = image.expression(
-            'exp(-0.9889*((RrsB4)/(RrsB5))+0.3619)',
-            {'RrsB4': image.select('B4'),
-             'RrsB5': image.select('B5')}).updateMask(ndwi)
-        return clh_a.set('year', ynz).set('month', 1).set('date', ee.Date.fromYMD(ynz,1,1)).set('system:time_start',ee.Date.fromYMD(ynz,1,1)).map()
-    
-    parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-    
-    clhcollection = ee.ImageCollection.fromImages([chla]).flatten()
-    
-    Map.addLayer(clhcollection, parameter, 'Clorophyll-a')
-    Map.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
-    Map.to_streamlit(width=width, height=height)
+        mask = qa.bitwiseAnd(cloud_shadow_bit_mask).eq(0) \
+            .And(qa.bitwiseAnd(clouds_bit_mask).eq(0))
+        return image \
+            .divide(10000) \
+            .divide(3.141593) \
+            .updateMask(mask)
+
+
+        def calculate_clorophil_a(year) :
+            image = collection \
+                .filter(ee.Filter.calendarRange(year, year, 'year')) \
+                .map(mask_clouds) \
+                .mean()
+            ndwi = image \
+                .normalizedDifference(['B3', 'B5']) \
+                .rename('NDWI')
+            clorophil_a = image \
+                .expression('exp(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
+                    'RrsB4': image.select('B4'),
+                    'RrsB5': image.select('B5')
+                }) \
+                .updateMask(ndwi)
+            return clorophil_a \
+                .set('year', year) \
+                .set('month', 1) \
+                .set('date', ee.Date.fromYMD(year,1,1)) \
+                .set('system:time_start',ee.Date.fromYMD(year, 1, 1))
+
+        clorophil_a_collection = ee.ImageCollection.fromImages([
+            calculate_clorophil_a(year)
+            for year in yearlist
+        ])
+        print(clorophil_a_collection.getInfo())
+
+        parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+        m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+        m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
+        m.to_streamlit(width=width, height=height)
