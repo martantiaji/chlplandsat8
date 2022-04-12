@@ -38,7 +38,7 @@ def clhT1():
     print(yearlist)
     #Read the Data
     for col in yearlist:
-        col= ee.ImageCollection("LANDSAT/LC08/C01/T1_SR")\
+        col= ee.ImageCollection("LANDSAT/LC08/C01/T2_SR")\
             .filterBounds(studyarea).filter(ee.Filter.eq('year', yearlist)).first()
     #cloud masking area
     def maskL8sr(col):
