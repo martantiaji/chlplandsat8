@@ -4,7 +4,7 @@ import streamlit as st
 import numpy as np
 
 
-def app():
+def introduction():
     st.title("Chlorophyll-a")
     "#streamlit geemap klorofil-a"
 
@@ -79,3 +79,13 @@ def L8_T1():
         m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
         m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
         m.to_streamlit(width=width, height=height)
+
+def app():
+    apps = ["Landsat 8 Surface Reflectance Tier 1", "Landsat 8 Surface Reflectance Tier 2"]
+    
+    selected_app = st.selectbox("Select an app", apps)
+    
+    if selected_app == "Landsat 8 Surface Reflectance Tier 1":
+        L8_T1()
+    elif selected_app == "Landsat 8 Surface Reflectance Tier 2":
+        L8_T2()
