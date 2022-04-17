@@ -49,36 +49,36 @@ def L8_T1():
             .updateMask(mask)
 
 
-        def calculate_clorophil_a(year) :
-            image = collection \
-                .filter(ee.Filter.calendarRange(year, year, 'year')) \
-                .map(mask_clouds) \
-                .mean()
-            ndwi = image \
-                .normalizedDifference(['B3', 'B5']) \
-                .rename('NDWI')
-            clorophil_a = image \
-                .expression('exp(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
-                    'RrsB4': image.select('B4'),
-                    'RrsB5': image.select('B5')
-                }) \
-                .updateMask(ndwi)
-            return clorophil_a \
-                .set('year', year) \
-                .set('month', 1) \
-                .set('date', ee.Date.fromYMD(year,1,1)) \
-                .set('system:time_start',ee.Date.fromYMD(year, 1, 1))
+    def calculate_clorophil_a(year) :
+        image = collection \
+            .filter(ee.Filter.calendarRange(year, year, 'year')) \
+            .map(mask_clouds) \
+            .mean()
+        ndwi = image \
+            .normalizedDifference(['B3', 'B5']) \
+            .rename('NDWI')
+        clorophil_a = image \
+            .expression('exp(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
+                'RrsB4': image.select('B4'),
+                'RrsB5': image.select('B5')
+            }) \
+            .updateMask(ndwi)
+        return clorophil_a \
+            .set('year', year) \
+            .set('month', 1) \
+            .set('date', ee.Date.fromYMD(year,1,1)) \
+            .set('system:time_start',ee.Date.fromYMD(year, 1, 1))
 
-        clorophil_a_collection = ee.ImageCollection.fromImages([
-            calculate_clorophil_a(year)
-            for year in yearlist
-        ])
-        print(clorophil_a_collection.getInfo())
+    clorophil_a_collection = ee.ImageCollection.fromImages([
+        calculate_clorophil_a(year)
+        for year in yearlist
+    ])
+    print(clorophil_a_collection.getInfo())
 
-        parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-        m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
-        m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
-        m.to_streamlit(width=width, height=height)
+    parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+    m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+    m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
+    m.to_streamlit(width=width, height=height)
 
 def app():
     apps = ["Landsat 8 Surface Reflectance Tier 1", "Landsat 8 Surface Reflectance Tier 2"]
