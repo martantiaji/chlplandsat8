@@ -3,17 +3,19 @@ import geemap
 import streamlit as st
 import numpy as np
 
+ee.Initialize()
 
-st.title("Chlorophyll-a")
-"#streamlit geemap klorofil-a"
+def introduction :
+    st.title("Chlorophyll-a")
+    "#streamlit geemap klorofil-a"
 
-st.markdown("""
+    st.markdown("""
 
-Aplikasi Web ini dibuat dengan menggunakan Streamlit untuk menampilkan nilai 
-estimasi besar klorofil-a pada Danau Matano dan Danau Towuti menggunakan 
-algoritma Jaelani 2015 berdasarkan jurnal [Pemetaan Distribusi Spasial Konsentrasi Klorofil-A dengan Landsat 8 di Danau Matano dan Danau Towuti, Sulawesi Selatan](http://lipi.go.id/publikasi/pemetaan-distribusi-spasial-konsentrasi-klorofil-a-dengan-landsat-8-di-danau-matano-dan-danau-towuti-sulawesi-selatan/2062)
+    Aplikasi Web ini dibuat dengan menggunakan Streamlit untuk menampilkan nilai 
+    estimasi besar klorofil-a pada Danau Matano dan Danau Towuti menggunakan 
+    algoritma Jaelani 2015 berdasarkan jurnal [Pemetaan Distribusi Spasial Konsentrasi Klorofil-A dengan Landsat 8 di Danau Matano dan Danau Towuti, Sulawesi Selatan](http://lipi.go.id/publikasi/pemetaan-distribusi-spasial-konsentrasi-klorofil-a-dengan-landsat-8-di-danau-matano-dan-danau-towuti-sulawesi-selatan/2062)
 
-""")
+    """)
     
     
 def L8_T1():
@@ -86,6 +88,8 @@ def L8_T1():
     #)
     #m.to_streamlit(width=width, height=height)
     
+    years = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]
+    
     with row1_col2:
         selected_year = st.multiselect("Select a year", years)
         add_chart = st.checkbox("Show chart")
@@ -111,13 +115,13 @@ def L8_T2():
     
     m = geemap.Map()
     
-    start_year = 2013
+    start_year = 2016
     end_year = 2020
     study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
     
-    collection = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR") \
+    collection = ee.ImageCollection("LANDSAT/LC08/C01/T2_SR") \
         .filterBounds(study_area)
     
     yearlist = range(start_year, end_year)
@@ -174,6 +178,8 @@ def L8_T2():
     #transparent_bg=True,
     #)
     #m.to_streamlit(width=width, height=height)
+    
+    years = ["2016", "2017", "2018", "2019", "2020"]
     
     with row1_col2:
         selected_year = st.multiselect("Select a year", years)
