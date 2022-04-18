@@ -4,6 +4,7 @@ import streamlit as st
 import numpy as np
 
 ee.Initialize()
+ee.Authenticate()
 
 def introduction() :
     st.title("Chlorophyll-a")
