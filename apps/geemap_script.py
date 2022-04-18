@@ -5,7 +5,7 @@ import numpy as np
 
 ee.Initialize()
 
-def introduction :
+def introduction() :
     st.title("Chlorophyll-a")
     "#streamlit geemap klorofil-a"
 
