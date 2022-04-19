@@ -8,6 +8,10 @@ def L8_T1():
     
     st.header("Landsat 8 Surface Reflectance Tier 1")
     
+    row1_col1, row1_col2 = st.columns([3, 1])
+    width = 950
+    height = 600
+    
     m = geemap.Map()
     
     start_year = 2013
@@ -98,6 +102,10 @@ def L8_T1():
 def L8_T2():
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
+    
+    row1_col1, row1_col2 = st.columns([3, 1])
+    width = 950
+    height = 600
     
     m = geemap.Map()
     
