@@ -97,7 +97,7 @@ def L8_T1():
 
 def L8_T2():
     
-    st.header("Landsat 8 Surface Reflectance Tier 1")
+    st.header("Landsat 8 Surface Reflectance Tier 2")
     
     m = geemap.Map()
     
