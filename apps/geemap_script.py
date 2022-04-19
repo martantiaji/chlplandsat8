@@ -3,19 +3,6 @@ import geemap
 import streamlit as st
 import numpy as np
 
-
-def introduction() :
-    st.title("Chlorophyll-a")
-    "#streamlit geemap klorofil-a"
-
-    st.markdown("""
-
-    Aplikasi Web ini dibuat dengan menggunakan Streamlit untuk menampilkan nilai 
-    estimasi besar klorofil-a pada Danau Matano dan Danau Towuti menggunakan 
-    algoritma Jaelani 2015 berdasarkan jurnal [Pemetaan Distribusi Spasial Konsentrasi Klorofil-A dengan Landsat 8 di Danau Matano dan Danau Towuti, Sulawesi Selatan](http://lipi.go.id/publikasi/pemetaan-distribusi-spasial-konsentrasi-klorofil-a-dengan-landsat-8-di-danau-matano-dan-danau-towuti-sulawesi-selatan/2062)
-
-    """)
-    
     
 def L8_T1():
     
@@ -200,6 +187,16 @@ def L8_T2():
             Map.to_streamlit(width=width, height=height)
     
 def app():
+    st.title("Chlorophyll-a")
+
+    st.markdown("""
+
+    Aplikasi Web ini dibuat dengan menggunakan Streamlit untuk menampilkan nilai 
+    estimasi besar klorofil-a pada Danau Matano dan Danau Towuti menggunakan 
+    algoritma Jaelani 2015 berdasarkan jurnal [Pemetaan Distribusi Spasial Konsentrasi Klorofil-A dengan Landsat 8 di Danau Matano dan Danau Towuti, Sulawesi Selatan](http://lipi.go.id/publikasi/pemetaan-distribusi-spasial-konsentrasi-klorofil-a-dengan-landsat-8-di-danau-matano-dan-danau-towuti-sulawesi-selatan/2062)
+
+    """)
+    
     apps = ["Landsat 8 Surface Reflectance Tier 1", "Landsat 8 Surface Reflectance Tier 2"]
     
     selected_app = st.selectbox("Select an app", apps)
