@@ -3,7 +3,7 @@ import geemap
 import streamlit as st
 import numpy as np
 
-ee.Initialize()
+ee.initialize()
 ee.Authenticate()
 
 def L8_T1():
