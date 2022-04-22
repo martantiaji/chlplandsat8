@@ -3,8 +3,8 @@ import geemap
 import streamlit as st
 import numpy as np
 
-ee.initialize(baseurl, tileurl, successCallback, errorCallback, xsrfToken, project)
-ee.Authenticate(authorization_code=None, quiet=None, code_verifier=None, auth_mode=None)
+ee.Initialize()
+ee.Authenticate()
 
 def L8_T1():
     
