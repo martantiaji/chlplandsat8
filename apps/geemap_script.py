@@ -3,6 +3,7 @@ import geemap
 import streamlit as st
 import numpy as np
 
+credentials = data.get_persistent_credentials()
 ee.Initialize()
 ee.Authenticate()
 
