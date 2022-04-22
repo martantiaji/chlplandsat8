@@ -3,9 +3,9 @@ import geemap
 import streamlit as st
 import numpy as np
 
-ee.Initialize(None)
 ee.Authenticate(authorization_code=None, quiet=None, code_verifier=None, auth_mode=None)
-    
+ee.initialize()
+
 def L8_T1():
     
     st.header("Landsat 8 Surface Reflectance Tier 1")
