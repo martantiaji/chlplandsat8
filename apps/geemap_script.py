@@ -2,11 +2,6 @@ import ee
 import geemap
 import streamlit as st
 import numpy as np
-from google.auth import compute_engine
-
-credentials = compute_engine.Credentials(scopes=['https://www.googleapis.com/auth/earthengine'])
-ee.Initialize(credentials)
-ee.Authenticate()
 
 def L8_T1():
     
