@@ -2,9 +2,9 @@ import ee
 import geemap
 import streamlit as st
 import numpy as np
+from google.auth import compute_engine
 
-service_account = 'chlorophyll51s@tugasakhir-2022.iam.gserviceaccount.com'
-credentials = ee.ServiceAccountCredentials(service_account, 'tugasakhir-2022-d781b9bd8d8c.json')
+credentials = compute_engine.Credentials(scopes=['https://www.googleapis.com/auth/earthengine'])
 ee.Initialize(credentials)
 ee.Authenticate()
 
