@@ -3,8 +3,10 @@ import geemap
 import streamlit as st
 import numpy as np
 
+service_account = 'chlorophyll51s@tugasakhir-2022.iam.gserviceaccount.com'
+credentials = ee.ServiceAccountCredentials(service_account, 'tugasakhir-2022-d781b9bd8d8c.json')
+ee.Initialize(credentials)
 ee.Authenticate()
-ee.Initialize()
 
 def L8_T1():
     
