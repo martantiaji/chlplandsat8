@@ -77,10 +77,10 @@ def L8_T1():
     #)
     #m.to_streamlit(width=width, height=height)
     
-    years = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]
+    years1 = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]
     
     with row1_col2:
-        selected_year = st.multiselect("Select a year", years)
+        selected_year = st.multiselect("Select a year", years1)
         add_chart = st.checkbox("Show chart")
 
     if selected_year:
@@ -172,10 +172,10 @@ def L8_T2():
     #)
     #m.to_streamlit(width=width, height=height)
     
-    years = ["2016", "2017", "2018", "2019", "2020"]
+    years2 = ["2016", "2017", "2018", "2019", "2020"]
     
     with row1_col2:
-        selected_year = st.multiselect("Select a year", years)
+        selected_year = st.multiselect("Select a year", years2)
         add_chart = st.checkbox("Show chart")
 
     if selected_year:
