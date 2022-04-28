@@ -143,7 +143,6 @@ def L8_T2():
             .filter(ee.Filter.calendarRange(year, year, 'year')) \
             .map(mask_clouds) \
             .median() 
-        #diubah menjadi median semua mean nya (rentang waktu)
         ndwi = image.normalizedDifference(['B3', 'B5']).rename('NDWI')
         clorophil_a = image.expression(
             '10**(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
