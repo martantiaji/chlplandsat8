@@ -87,18 +87,18 @@ def L8_T1():
 
     if selected_year:
         for year in selected_year:
-            Map.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
+            m.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
 
         if add_chart:
-            Map.add_legend(
+            m.add_legend(
                 legend_title="Clorophyll-a (mg/m3)", builtin_legend="NLCD"
             )
         with row1_col1:
-            Map.to_streamlit(width=width, height=height)
+            m.to_streamlit(width=width, height=height)
 
     else:
         with row1_col1:
-            Map.to_streamlit(width=width, height=height)
+            m.to_streamlit(width=width, height=height)
 
 def L8_T2():
     
@@ -182,18 +182,18 @@ def L8_T2():
 
     if selected_year:
         for year in selected_year:
-            Map.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
+            m.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
 
         if add_chart:
-            Map.add_legend(
+            m.add_legend(
                 legend_title="Clorophyll-a (mg/m3)", builtin_legend="NLCD"
             )
         with row1_col1:
-            Map.to_streamlit(width=width, height=height)
+            m.to_streamlit(width=width, height=height)
 
     else:
         with row1_col1:
-            Map.to_streamlit(width=width, height=height)            
+            m.to_streamlit(width=width, height=height)            
     
 def app():
     st.title("Chlorophyll-a")
