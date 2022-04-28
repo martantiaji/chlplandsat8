@@ -12,18 +12,19 @@ def L8_T1():
     height = 600
     
     m = geemap.Map()
-    
+
     start_year = 2013
     end_year = 2020
     study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
-    
-    collection = ee.ImageCollection("LANDSAT/LC08/C01/T1_SR") \
+
+    collection = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR') \
         .filterBounds(study_area)
-    
+
     yearlist = range(start_year, end_year)
-    
+
+
     def mask_clouds(image):
         # Bits 3 and 5 are cloud shadow and cloud, respectively.
         cloud_shadow_bit_mask = (1 << 3)
@@ -43,7 +44,7 @@ def L8_T1():
         image = collection \
             .filter(ee.Filter.calendarRange(year, year, 'year')) \
             .map(mask_clouds) \
-            .mean()
+            .median()
         ndwi = image \
             .normalizedDifference(['B3', 'B5']) \
             .rename('NDWI')
@@ -66,6 +67,7 @@ def L8_T1():
     print(clorophil_a_collection.getInfo())
 
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+
     #m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
     #m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
     #m.add_colorbar(
@@ -107,47 +109,47 @@ def L8_T2():
     height = 600
     
     m = geemap.Map()
-    
+
     start_year = 2016
     end_year = 2020
     study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
-    
-    collection = ee.ImageCollection("LANDSAT/LC08/C01/T2_SR") \
-        .filterBounds(study_area)
-    
+
+    collection = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR') \
+                .filterBounds(study_area)
+
     yearlist = range(start_year, end_year)
-    
+
+
     def mask_clouds(image):
         # Bits 3 and 5 are cloud shadow and cloud, respectively.
-        cloud_shadow_bit_mask = (1 << 10)
-        clouds_bit_mask = (1 << 15)
+        cloud_shadow_bit_mask = (1 << 20)
+        clouds_bit_mask = (1 << 25)
         # Get the pixel QA band.
         qa = image.select('pixel_qa')
         # Both flags should be set to zero, indicating clear conditions.
         mask = qa.bitwiseAnd(cloud_shadow_bit_mask).eq(0) \
             .And(qa.bitwiseAnd(clouds_bit_mask).eq(0))
-        return image \
-            .divide(10000) \
-            .divide(3.141593) \
+        return image\
+            .divide(10000)\
+            .divide(3.141593)\
             .updateMask(mask)
 
+    #coba diganti pi
 
     def calculate_clorophil_a(year) :
         image = collection \
             .filter(ee.Filter.calendarRange(year, year, 'year')) \
             .map(mask_clouds) \
-            .mean()
-        ndwi = image \
-            .normalizedDifference(['B3', 'B5']) \
-            .rename('NDWI')
-        clorophil_a = image \
-            .expression('10**(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
+            .median() 
+        #diubah menjadi median semua mean nya (rentang waktu)
+        ndwi = image.normalizedDifference(['B3', 'B5']).rename('NDWI')
+        clorophil_a = image.expression(
+            '10**(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
                 'RrsB4': image.select('B4'),
                 'RrsB5': image.select('B5')
-            }) \
-            .updateMask(ndwi)
+            }).updateMask(ndwi)
         return clorophil_a \
             .set('year', year) \
             .set('month', 1) \
@@ -161,6 +163,7 @@ def L8_T2():
     print(clorophil_a_collection.getInfo())
 
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+
     #m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
     #m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
     #m.add_colorbar(
