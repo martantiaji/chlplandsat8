@@ -3,9 +3,6 @@ import geemap
 import streamlit as st
 import numpy as np
 
-ee.Authenticate()
-ee.Initialize()
-
 def L8_T1():
     
     st.header("Landsat 8 Surface Reflectance Tier 1")
