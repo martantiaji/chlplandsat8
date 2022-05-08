@@ -67,60 +67,37 @@ def L8_T1():
     print(clorophil_a_collection.getInfo())
 
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
+    m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+    m.add_colorbar(
+        parameter,
+        label="Clorophyll-a (mg/m3)",
+        orientation="horizontal",
+        layer_name="Clorophyll-a",
+        transparent_bg=True,
+    )
 
-    #m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
-    #m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
-    #m.add_colorbar(
-    #parameter,
-    #label="Clorophyll-a (mg/m3)",
-    #orientation="horizontal",
-    #layer_name="Clorophyll-a",
-    #transparent_bg=True,
-    #)
-    #m.to_streamlit(width=width, height=height)
-    
-    years1 = ["2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"]
-    
-    with row1_col2:
-        selected_year = st.multiselect("Select a year", years1)
-        add_chart = st.checkbox("Show chart")
+    m.to_streamlit(width=width, height=height)
 
-    if selected_year:
-        for year in selected_year:
-            m.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
-
-        if add_chart:
-            m.add_legend(
-                legend_title="Clorophyll-a (mg/m3)", builtin_legend="NLCD"
-            )
-        with row1_col1:
-            m.to_streamlit(width=width, height=height)
-
-    else:
-        with row1_col1:
-            m.to_streamlit(width=width, height=height)
-
-def L8_T2():
+def L8_T2() :
     
     st.header("Landsat 8 Surface Reflectance Tier 2")
     
     row1_col1, row1_col2 = st.columns([3, 1])
     width = 950
     height = 600
-    
+
     m = geemap.Map()
 
     start_year = 2016
     end_year = 2020
+    yearlist = range(start_year, end_year)
+
     study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
 
-    collection = ee.ImageCollection('LANDSAT/LC08/C01/T1_SR') \
+    collection = ee.ImageCollection('LANDSAT/LC08/C01/T2_SR') \
                 .filterBounds(study_area)
-
-    yearlist = range(start_year, end_year)
-
 
     def mask_clouds(image):
         # Bits 3 and 5 are cloud shadow and cloud, respectively.
@@ -136,13 +113,12 @@ def L8_T2():
             .divide(3.141593)\
             .updateMask(mask)
 
-    #coba diganti pi
-
     def calculate_clorophil_a(year) :
         image = collection \
             .filter(ee.Filter.calendarRange(year, year, 'year')) \
             .map(mask_clouds) \
             .median() 
+        #diubah menjadi median semua mean nya (rentang waktu)
         ndwi = image.normalizedDifference(['B3', 'B5']).rename('NDWI')
         clorophil_a = image.expression(
             '10**(-0.9889*((RrsB4)/(RrsB5))+0.3619)', {
@@ -162,38 +138,15 @@ def L8_T2():
     print(clorophil_a_collection.getInfo())
 
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-
-    #m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
-    #m.setControlVisibility(layerControl=True, fullscreenControl=True, latLngPopup=True)
-    #m.add_colorbar(
-    #parameter,
-    #label="Clorophyll-a (mg/m3)",
-    #orientation="horizontal",
-    #layer_name="Clorophyll-a",
-    #transparent_bg=True,
-    #)
-    #m.to_streamlit(width=width, height=height)
-    
-    years2 = ["2016", "2017", "2018", "2019", "2020"]
-    
-    with row1_col2:
-        selected_year = st.multiselect("Select a year", years2)
-        add_chart = st.checkbox("Show chart")
-
-    if selected_year:
-        for year in selected_year:
-            m.addLayer(calculate_clorophil_a(year), parameter, "Clorophyll-a " + year)
-
-        if add_chart:
-            m.add_legend(
-                legend_title="Clorophyll-a (mg/m3)", builtin_legend="NLCD"
-            )
-        with row1_col1:
-            m.to_streamlit(width=width, height=height)
-
-    else:
-        with row1_col1:
-            m.to_streamlit(width=width, height=height)            
+    m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+    m.add_colorbar(
+        parameter,
+        label="Clorophyll-a (mg/m3)",
+        orientation="horizontal",
+        layer_name="Clorophyll-a",
+        transparent_bg=True,
+    )
+    m.to_streamlit(width=width, height=height)          
     
 def app():
     st.title("Chlorophyll-a")
