@@ -2,19 +2,20 @@ import ee
 import geemap
 import streamlit as st
 import numpy as np
+import os
 
-def L8_T1():
-    
+def L8_T1() :
+
     st.header("Landsat 8 Surface Reflectance Tier 1")
     
     row1_col1, row1_col2 = st.columns([3, 1])
     width = 950
     height = 600
-    
+
     m = geemap.Map()
 
     start_year = 2013
-    end_year = 2020
+    end_year = 2021
     study_area = ee.Geometry.Polygon([
         [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
     ])
@@ -66,16 +67,23 @@ def L8_T1():
     ])
     print(clorophil_a_collection.getInfo())
 
+    chlorophyll_layer_names = ['Chlorophyll-a ' + str(year) for year in yearlist]
+    print(chlorophyll_layer_names)
+
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-    m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+    m.ts_inspector(
+        left_ts=clorophil_a_collection,
+        right_ts=clorophil_a_collection,
+        left_names=chlorophyll_layer_names,
+        right_names=chlorophyll_layer_names,
+        left_vis=parameter,
+        right_vis=parameter,)
     m.add_colorbar(
         parameter,
         label="Clorophyll-a (mg/m3)",
         orientation="horizontal",
         layer_name="Clorophyll-a",
-        transparent_bg=True,
-    )
-
+        transparent_bg=True,)
     m.to_streamlit(width=width, height=height)
 
 def L8_T2() :
@@ -89,7 +97,7 @@ def L8_T2() :
     m = geemap.Map()
 
     start_year = 2016
-    end_year = 2020
+    end_year = 2021
     yearlist = range(start_year, end_year)
 
     study_area = ee.Geometry.Polygon([
@@ -112,6 +120,8 @@ def L8_T2() :
             .divide(10000)\
             .divide(3.141593)\
             .updateMask(mask)
+
+    #coba diganti pi
 
     def calculate_clorophil_a(year) :
         image = collection \
@@ -137,8 +147,17 @@ def L8_T2() :
     ])
     print(clorophil_a_collection.getInfo())
 
+    chlorophyll_layer_names = ['Chlorophyll-a ' + str(year) for year in yearlist]
+    print(chlorophyll_layer_names)
+
     parameter = {'min':0, 'max':1, 'palette':['blue','green']}
-    m.addLayer(clorophil_a_collection,parameter,"Clorophyll-a")
+    m.ts_inspector(
+        left_ts=clorophil_a_collection,
+        right_ts=clorophil_a_collection,
+        left_names=chlorophyll_layer_names,
+        right_names=chlorophyll_layer_names,
+        left_vis=parameter,
+        right_vis=parameter,)
     m.add_colorbar(
         parameter,
         label="Clorophyll-a (mg/m3)",
@@ -146,8 +165,8 @@ def L8_T2() :
         layer_name="Clorophyll-a",
         transparent_bg=True,
     )
-    m.to_streamlit(width=width, height=height)          
-    
+    m.to_streamlit(width=width, height=height)
+
 def app():
     st.title("Chlorophyll-a")
 
@@ -161,7 +180,7 @@ def app():
     
     apps = ["Landsat 8 Surface Reflectance Tier 1", "Landsat 8 Surface Reflectance Tier 2"]
     
-    selected_app = st.selectbox("Select an app", apps)
+    selected_app = st.selectbox("Select an Image", apps)
     
     if selected_app == "Landsat 8 Surface Reflectance Tier 1":
         L8_T1()
