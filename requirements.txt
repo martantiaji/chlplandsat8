@@ -1,11 +1,13 @@
 --find-links=https://girder.github.io/large_image_wheels GDAL
 ee==0.2
 geemap==0.13.4
-geopandas
-jupyter-server-proxy
-localtileserver
+geojson==2.5.0
+geopandas==0.8.1
+jupyter-client==7.3.0
+jupyter-server-proxy==3.2.1
+localtileserver==0.5.8
 matplotlib==3.5.1
-nbserverproxy
+nbserverproxy==0.8.8
 numpy==1.22.3
 plotly==5.7.0
 streamlit==1.8.1
