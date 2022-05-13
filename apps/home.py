@@ -3,11 +3,6 @@ import geemap
 
 def app():
     st.title("ABOUT APP")
-    m=geemap.Map()
-    study_area = ee.Geometry.Polygon([
-        [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
-        ])
-
     st.markdown(
         """
         Pemerintah melalui Rencana Pembangunan Jangka Menengah Nasional (RPJMN) 2015-2019, menyebutkan bahwa ketahanan air, termasuk 
@@ -31,5 +26,3 @@ def app():
 
     """
     )
-    m.centerObject(study_area, 4)
-    m.to_streamlit(width=width, height=height)
