@@ -1,7 +1,15 @@
-import ee
-import geemap
 import streamlit as st
+import ee
 import numpy as np
+import geemap
+import pandas as pd
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pygal
+import ipygee as ui
+from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie_spinner
 
 def L8_T1():
     
@@ -83,6 +91,10 @@ def L8_T1():
     )
 
     m.to_streamlit(width=width, height=height)
+    out_gif= "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/videoThumbnails/95777a5052393f9d132687dc74b5ac7a-dd3291f7f99d0e209c6839234dc430bd:getPixels"
+    st.image(out_gif, caption=None, width=None, use_column_width=None, 
+    clamp=False, channels="RGB", output_format="auto")
+
 
 def L8_T2() :
     
@@ -158,7 +170,11 @@ def L8_T2() :
         layer_name="Clorophyll-a",
         transparent_bg=True,
     )
-    m.to_streamlit(width=width, height=height)          
+    
+    m.to_streamlit(width=width, height=height)
+    out_gif= "https://earthengine.googleapis.com/v1alpha/projects/earthengine-legacy/videoThumbnails/deef43df5ac8457bf353c66994fd1826-17679fe21c10ddc2c6f8da0d998f339d:getPixels"
+    st.image(out_gif, caption=None, width=None, use_column_width=None, 
+    clamp=False, channels="RGB", output_format="auto")          
     
 def app():
     st.title("Chlorophyll-a")

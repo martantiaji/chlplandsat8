@@ -10,5 +10,8 @@ matplotlib==3.5.1
 nbserverproxy==0.8.8
 numpy==1.22.3
 plotly==5.7.0
+request==2.83.1
+requests==2.27.1
 streamlit==1.8.1
+streamlit-lottie==0.0.3
 streamlit-option-menu==0.3.2
