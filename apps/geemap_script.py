@@ -11,6 +11,12 @@ def L8_T1():
     width = 950
     height = 600
     
+    try:
+        ee.Initialize()
+    except Exception as e:
+        ee.Authenticate()
+        ee.Initialize()
+
     m = geemap.Map()
 
     start_year = 2013
@@ -85,6 +91,12 @@ def L8_T2() :
     row1_col1, row1_col2 = st.columns([3, 1])
     width = 950
     height = 600
+
+    try:
+        ee.Initialize()
+    except Exception as e:
+        ee.Authenticate()
+        ee.Initialize()
 
     m = geemap.Map()
 
