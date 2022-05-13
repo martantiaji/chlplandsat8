@@ -34,4 +34,4 @@ def app():
     """
     )
 m.centerObject(study_area, 4)
-m
+m.to_streamlit(width=width, height=height)
