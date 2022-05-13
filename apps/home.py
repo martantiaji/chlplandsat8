@@ -2,13 +2,12 @@ from re import M
 import streamlit as st
 import geemap
 
-m=geemap.Map()
-study_area = ee.Geometry.Polygon([
-    [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
-    ])
-
 def app():
     st.title("ABOUT APP")
+    m=geemap.Map()
+    study_area = ee.Geometry.Polygon([
+        [121.731876,-2.330221], [121.069735, -2.317823], [121.214026,-2.994612], [121.785511,-2.992766]
+        ])
 
     st.markdown(
         """
@@ -33,5 +32,5 @@ def app():
 
     """
     )
-m.centerObject(study_area, 4)
-m.to_streamlit(width=width, height=height)
+    m.centerObject(study_area, 4)
+    m.to_streamlit(width=width, height=height)
