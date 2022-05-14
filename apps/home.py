@@ -22,7 +22,7 @@ def app():
         diperlukan adanya penelitian mengenai parameter kondisi tingkat kesuburan perairan danau. Salah satu parameter tingkat kesuburan
         perairan tersebut adalah klorofil-a. Klorofil-a adalah salah satu pigmen fotosintesis yang paling penting bagi organisme yang ada di perairan
         
-        Aplikasi web ini dibuat berdasarkan script [streamlit](https://github.com/martantiaji/chlplandsat8.git) dan script yang telah dibuat pada [Google Earth engine](https://code.earthengine.google.com/84ebcbb4a2e4b276e43c7c6993d09971)
+        Aplikasi web ini dibuat berdasarkan script [streamlit](https://github.com/martantiaji/chlplandsat8.git) dan script yang telah dibuat pada [Google Earth engine](https://code.earthengine.google.com/f833194f9a1d3a96663153fab24ee6e2)
 
     """
     )
