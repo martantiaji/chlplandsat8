@@ -6,4 +6,4 @@ A streamlit app template for geospatial applications based on [streamlit-option-
 
 App URL: <https://share.streamlit.io/martantiaji/chlplandsat8>
 
-![](https://drive.google.com/file/d/1B6JA1n32XqwT5MCQzWd5QAbNtve504zB/view?usp=sharing)
+![](https://imgur.com/a/dzXQIXv)
