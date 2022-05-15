@@ -79,6 +79,18 @@ def L8_T1():
         orientation="horizontal",
         layer_name="Clorophyll-a",
         transparent_bg=True)
+    
+    # ################################################################
+    # ##################  Show Every Image  ##########################
+    # ################################################################
+    m.addLayer(clorophil_a_collection.filterDate('2013-01-01','2013-12-31'),parameter,"Clorophyll-a 2013")
+    m.addLayer(clorophil_a_collection.filterDate('2014-01-01','2014-12-31'),parameter,"Clorophyll-a 2014")
+    m.addLayer(clorophil_a_collection.filterDate('2015-01-01','2015-12-31'),parameter,"Clorophyll-a 2015")
+    m.addLayer(clorophil_a_collection.filterDate('2016-01-01','2016-12-31'),parameter,"Clorophyll-a 2016")
+    m.addLayer(clorophil_a_collection.filterDate('2017-01-01','2017-12-31'),parameter,"Clorophyll-a 2017")
+    m.addLayer(clorophil_a_collection.filterDate('2018-01-01','2018-12-31'),parameter,"Clorophyll-a 2018")
+    m.addLayer(clorophil_a_collection.filterDate('2019-01-01','2019-12-31'),parameter,"Clorophyll-a 2019")
+    m.addLayer(clorophil_a_collection.filterDate('2020-01-01','2020-12-31'),parameter,"Clorophyll-a 2020")
     m.centerObject(study_area, 10)
     m.to_streamlit()
 
