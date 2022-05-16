@@ -3,6 +3,7 @@ ee
 geemap
 geojson
 geopandas
+ipygee
 jupyter-client
 jupyter-server-proxy
 localtileserver
@@ -10,8 +11,10 @@ matplotlib
 nbserverproxy
 numpy
 plotly
+pygal
 request
 requests
+seaborn
 streamlit
 streamlit-lottie
 streamlit-option-menu
