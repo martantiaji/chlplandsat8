@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tugasakhir-2022",
+  "private_key_id": "941e93fe6bb191abca35fc704dfd47c8862114e1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4dxWD0+93ELpj\nLblpQaZsYJYzT+SzNWxdwwRVaESLDKJczI63r9xng0DtSyAmW0uRh77Pn+k9tt8K\ngB0WDbr/thbIahkr7wRu59xVjm+k/34gna/InGXKeqrPk4hpOMKM4PaTWZqZd7lH\nlj/zi4nanSGdphVNiijkeqTDA7xvL+DhiIYFqBgmU9v6pD81cSMqlF6t8Jc5RMmC\nse8DdGRYthNYRQWh2+0IHzpDr4Ua30nqqR0bZhebr9/htM2KB9Rh+Qzl5pRt/ab9\nNYKGl2IdBMUKPXZTtL/Xbg/+pBQ/ig8Tg8R90T2dLEo9HhU/HQRjL4NmqzD36fr1\nl2sR8HiDAgMBAAECggEACnQlMf1Wusal6Wzz7vUbe1TV7j5+1XEXnRCqNDTefYrP\nwLaO9/XtZahYi5oQTlwqIisxMw765tZwOWYdP9yzVj55eA4bMxQuiiJ1qBuUVCNu\ngGavSY0jb6AYAf94YY4n6FfvYVZYno3cYCQxp5mmzE7PUuHQnz5PJvOUVsDlct+J\nGV8oTrJwZahj3e0ps3++HbZhenZb36siVjfu+SbKeG+JIiAF3PpXnM95EYIkVX/W\nrsoasxtNsH/Tbg2POsVux/s76MIhYQ24SJ4MS+auv+Secf2sQFmlHN+aa4hkZcwB\nNfgD66kk9P4IAYMuIwUFlWbttl0xGwJ0G1Bvdz+xEQKBgQDfOcT6D+W9499GrH8B\nMisMGWMW62e4MIBsrgLB0IbEb6iDxddj8pk2rQFBpYtAqbmFxiEdrR6+ksfGZQwM\n/XiLeNy6/wwD/9cahBqCynMEowP9D1edcU3inFd6G6+oblJTfrj5C0EnWjjhAQ8C\nU4jn4OkuX9YWoNYq0S9NZ9v+vwKBgQDTjHNWEWq89VbWw/EodiWVGxV9MLGEDAGS\nFo+pvyURsgw2Q6HhTjH9r6+xsRUdLXKtfauZm+i5InGMMS7vrFvlJIadcqNGLoXa\negwvb9b7jwA02EmjiEAp1+t8KrjfMLmGO4OrEtEc3oXiTeYESyvZnoAEbeMQH/cP\n2Rl716F7PQKBgQCSCV43Zk0b9Mcumk0ggCyvZrBv3yPk2T47W4AMQhrYyl/JjZYD\nGkRoA7jttJqsfB0WSm+B1a9mZ+pwfczrdqv1OuXVJGQ8/ZRBEamyZTXoE6nZVb8x\nDl4w4a1NAm3h2ALeAuqKa3V9hEXv1dx23iWT5Y1HvIT4GtLiAiZbEpZXSwKBgE4w\nqGSUdW44BAvHSnhZCtUMuKmX+NTEl0QGwLzN4Iak12yrHMco3sNUT00PFa2+IZfM\nTkOtY5wiBfP6Lc36V9De6j6Bo6WKBoFVAPH7lWtPVJUzqCwgbQ7KNsijBcfAu6HI\nl4cAonfYK4YUosLNgfyiX9DDSNyp4+hgptGmRpJFAoGAB03AhFtb7+JRCjA645ea\n2kHfPh19joQeQu35uTT8kp37f+wCu61S8+rPBQ1mbzT4GXNShPaLazygXjMcUwkE\nVShfh1Npm5VzM0mi8mMtm8c8Iz4/Pa59+3WI2b6NLkh/A3XdKE7VJHwUIUHp5Nqp\n8UNVdXQnNicrMRR7Iru65yE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "chlorophyll51s@tugasakhir-2022.iam.gserviceaccount.com",
+  "client_id": "105731699731446786350",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/chlorophyll51s%40tugasakhir-2022.iam.gserviceaccount.com"
+}
